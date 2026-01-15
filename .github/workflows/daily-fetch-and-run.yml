@@ -24,6 +24,8 @@ jobs:
         run: python ingest_daily.py
 
       - name: Run pipeline
+        env:
+          NOTIFY_WEBHOOK: ${{ secrets.NOTIFY_WEBHOOK }}
         run: python run_pipeline.py
 
       - name: Upload outputs as artifact
@@ -31,4 +33,3 @@ jobs:
         with:
           name: tennis-predictions
           path: outputs/*.csv
-
